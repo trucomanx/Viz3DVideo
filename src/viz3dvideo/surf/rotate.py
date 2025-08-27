@@ -8,7 +8,7 @@ from matplotlib.animation import FuncAnimation
 def animate_rotate( X, Y, Z, 
                     filename="animate_rotate.mp4",
                     pixel_size=(1920, 1080), 
-                    dpi=100, 
+                    dpi=200, 
                     colormap='viridis',
                     frames=360, 
                     interval=30, 
@@ -74,6 +74,6 @@ if __name__ == "__main__":
     X, Y = np.meshgrid(X, Y)
     Z = np.sin(np.sqrt(X**2 + Y**2))
 
-    animate_rotate(X, Y, Z, cb_enable=True)
+    animate_rotate(X, Y, Z, pixel_size=(3840, 2160), frames=720, cb_enable=True)
 
 

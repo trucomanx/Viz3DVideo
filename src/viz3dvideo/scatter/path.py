@@ -5,32 +5,35 @@ import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 from scipy.interpolate import interp1d
 
-def animate_path(   X, Y, Z, camera_points, 
-                    filename="animate_path.mp4", 
-                    pixel_size=(1920, 1080), 
-                    dpi=200, 
+def animate_path(   X, Y, Z, W, camera_points,
+                    filename="animate_path.mp4",
+                    pixel_size=(1920, 1080),
+                    dpi=200,
                     colormap='viridis',
                     frames=360,
                     interval=30,
-                    fps=30, 
+                    fps=30,
                     cb_enable=False,
-                    cb_title="Z"):
+                    cb_title="W",
+                    s=40  ):
     """
-    Creates and saves a 3D animation of the surface Z = f(X, Y) following a camera path
+    Creates and saves a 3D scatter animation following a camera path
     defined by `camera_points`.
 
     Args:
-        X (array-like): 2D array of X coordinates of the surface.
-        Y (array-like): 2D array of Y coordinates of the surface.
-        Z (array-like): 2D array of Z values of the surface.
+        X, Y, Z (array-like): 1D arrays of point coordinates.
+        W (array-like): 1D array of values used to color the points.
         camera_points (list of tuple): List of (elev, azim) tuples defining the camera path.
-        frames (int, optional): Total number of frames in the animation. Default is 360.
+        frames (int, optional): Total number of frames. Default is 360.
         pixel_size (tuple, optional): Figure size in pixels (width, height). Default is (1920, 1080).
         dpi (int, optional): Figure resolution in dots per inch. Default is 100.
-        colormap (str, optional): Colormap for the surface. Default is 'viridis'.
-        filename (str, optional): Output file name. Default is 'animate_path.mp4'.
+        colormap (str, optional): Matplotlib colormap for coloring. Default is 'viridis'.
+        filename (str, optional): Output file name. Default is 'animate_scatter_path.mp4'.
         fps (int, optional): Frames per second for the video. Default is 30.
         interval (int, optional): Interval between frames in milliseconds. Default is 30.
+        cb_enable (bool, optional): Enable colorbar. Default is False.
+        cb_title (str, optional): Colorbar title. Default is "W".
+        s (int, optional): Size of scatter points. Default is 40.
 
     Returns:
         None
@@ -42,13 +45,15 @@ def animate_path(   X, Y, Z, camera_points,
     # --- Cria figura ---
     fig = plt.figure(figsize=figsize, dpi=dpi)
     ax = fig.add_subplot(111, projection='3d')
-    hd_surf = ax.plot_surface(X, Y, Z, cmap=colormap)
+
+    # Scatter inicial
+    scatter = ax.scatter(X, Y, Z, c=W, cmap=colormap, s=s)
 
     # Barra de cores
     if cb_enable:
-        fig.colorbar(hd_surf, ax=ax, shrink=0.5, aspect=10, label=cb_title)
+        fig.colorbar(scatter, ax=ax, shrink=0.5, aspect=10, label=cb_title)
 
-    # --- Interpolação ---
+    # --- Interpolação do caminho da câmera ---
     camera_points = np.array(camera_points)
     n_points = len(camera_points)
     t_original = np.linspace(0, 1, n_points)
@@ -60,7 +65,7 @@ def animate_path(   X, Y, Z, camera_points,
     # --- Função de atualização ---
     def update(frame):
         ax.view_init(elev=elev_interp[frame], azim=azim_interp[frame])
-        return []
+        return scatter,
 
     def progresso(frame_number, total_frames):
         print(f"Renderizando frame {frame_number+1}/{total_frames}", end='\r')
@@ -77,17 +82,18 @@ def animate_path(   X, Y, Z, camera_points,
     print(f"\nVídeo salvo em {width}x{height} pixels como '{filename}'")
 
 
-
 if __name__ == "__main__":
     plt.style.use('dark_background')
 
-    X = np.linspace(-5, 5, 100)
-    Y = np.linspace(-5, 5, 100)
-    X, Y = np.meshgrid(X, Y)
-    Z = np.sin(np.sqrt(X**2 + Y**2))
+    # Exemplo com pontos aleatórios
+    n = 100
+    X = np.random.uniform(-5, 5, n)
+    Y = np.random.uniform(-5, 5, n)
+    Z = np.random.uniform(-5, 5, n)
+    W = np.sqrt(X**2 + Y**2 + Z**2)  # valor usado para cor
 
     # Lista de pontos de câmera pelos quais a animação deve passar
     camera_points = [(30, 0), (45, 90), (60, 180), (30, 270), (30, 360)]
 
-    animate_path(X, Y, Z, camera_points, frames=360, cb_enable=True)
+    animate_path(X, Y, Z, W, camera_points, frames=360, cb_enable=True)
 

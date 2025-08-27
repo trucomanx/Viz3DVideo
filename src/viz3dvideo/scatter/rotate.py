@@ -8,7 +8,7 @@ from matplotlib.animation import FuncAnimation
 def animate_rotate( X, Y, Z, W,
                     filename="animate_rotate.mp4",
                     pixel_size=(1920, 1080),
-                    dpi=100,
+                    dpi=200,
                     colormap='viridis',
                     frames=360,
                     interval=30,
@@ -16,7 +16,7 @@ def animate_rotate( X, Y, Z, W,
                     cb_enable=False,
                     cb_title="W",
                     elev=30,
-                    s=20 ):
+                    s=40 ):
     """
     Creates and saves a 3D rotating scatter plot animation.
 
@@ -33,7 +33,7 @@ def animate_rotate( X, Y, Z, W,
         frames (int, optional): Number of frames. Default 360.
         interval (int, optional): Interval between frames in ms. Default 30.
         fps (int, optional): Frames per second. Default 30.
-        s (int, optional): Scatter point size. Default 20.
+        s (int, optional): Scatter point size. Default 40.
         cb_enable (bool, optional): Enable colorbar. Default False.
         cb_title (str, optional): Title of colorbar. Default "W".
 
