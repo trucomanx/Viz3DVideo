@@ -6,7 +6,7 @@ from matplotlib.animation import FuncAnimation
 from scipy.interpolate import interp1d
 
 def animate_path(   X, Y, Z, W, camera_points,
-                    filename="animate_path.mp4",
+                    output_path="animate_path.mp4",
                     pixel_size=(1920, 1080),
                     dpi=200,
                     colormap='viridis',
@@ -28,7 +28,7 @@ def animate_path(   X, Y, Z, W, camera_points,
         pixel_size (tuple, optional): Figure size in pixels (width, height). Default is (1920, 1080).
         dpi (int, optional): Figure resolution in dots per inch. Default is 100.
         colormap (str, optional): Matplotlib colormap for coloring. Default is 'viridis'.
-        filename (str, optional): Output file name. Default is 'animate_scatter_path.mp4'.
+        output_path (str, optional): Output file name. Default is 'animate_scatter_path.mp4'.
         fps (int, optional): Frames per second for the video. Default is 30.
         interval (int, optional): Interval between frames in milliseconds. Default is 30.
         cb_enable (bool, optional): Enable colorbar. Default is False.
@@ -73,13 +73,13 @@ def animate_path(   X, Y, Z, W, camera_points,
     ani = FuncAnimation(fig, update, frames=frames, interval=interval, blit=False)
 
     ani.save(
-        filename,
+        output_path,
         writer='ffmpeg',
         fps=fps,
         dpi=dpi,
         progress_callback=progresso
     )
-    print(f"\nVídeo salvo em {width}x{height} pixels como '{filename}'")
+    print(f"\nVídeo salvo em {width}x{height} pixels como '{output_path}'")
 
 
 if __name__ == "__main__":

@@ -6,7 +6,7 @@ from matplotlib.animation import FuncAnimation
 
 
 def animate_rotate( X, Y, Z, W,
-                    filename="animate_rotate.mp4",
+                    output_path="animate_rotate.mp4",
                     pixel_size=(1920, 1080),
                     dpi=200,
                     colormap='viridis',
@@ -25,7 +25,7 @@ def animate_rotate( X, Y, Z, W,
         Y (array-like): Coordinates Y of the points (1D arrays).
         Z (array-like): Coordinates Z of the points (1D arrays).
         W (array-like): Values used to color the points.
-        filename (str, optional): Output video file. Default 'animate_rotate.mp4'.
+        output_path (str, optional): Output video file. Default 'animate_rotate.mp4'.
         pixel_size (tuple, optional): Size of video in pixels. Default (1920, 1080).
         dpi (int, optional): Dots per inch. Default 100.
         colormap (str, optional): Matplotlib colormap for coloring. Default 'viridis'.
@@ -63,13 +63,13 @@ def animate_rotate( X, Y, Z, W,
     ani = FuncAnimation(fig, update, frames=frames, interval=interval, blit=False)
 
     ani.save(
-        filename,
+        output_path,
         writer='ffmpeg',
         fps=fps,
         dpi=dpi,
         progress_callback=progresso
     )
-    print(f"\nVídeo salvo em {width}x{height} pixels como '{filename}'")
+    print(f"\nVídeo salvo em {width}x{height} pixels como '{output_path}'")
 
 
 if __name__ == "__main__":

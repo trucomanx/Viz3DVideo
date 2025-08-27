@@ -2,7 +2,7 @@
 
 from moviepy.editor import VideoFileClip, ImageClip, CompositeVideoClip
 
-def overlay_image_on_video(video_path, image_path, position=(0,0), output_path="output.mp4"):
+def image_on_video(video_path, image_path, position=(0,0), output_path="output.mp4"):
     """
     Overlays an image on every frame of a video.
 
@@ -29,8 +29,8 @@ def overlay_image_on_video(video_path, image_path, position=(0,0), output_path="
 
 # Exemplo de uso
 if __name__ == "__main__":
-    overlay_image_on_video( video_path="scatter_path.mp4",
-                            image_path="logo.png",
-                            position=(50,50),
-                            output_path="scatter_with_logo.mp4" )
+    image_on_video( video_path="scatter_path.mp4",
+                    image_path="logo.png",
+                    position=(50,50),
+                    output_path="scatter_with_logo.mp4" )
 
