@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 # pip install viz3dvideo
 import sys
-sys.path.append("../src")
+sys.path.append("../../src")
 import matplotlib.pyplot as plt
 import numpy as np
 import viz3dvideo as vz3 

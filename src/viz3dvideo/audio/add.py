@@ -38,7 +38,7 @@ def add_to_video(video_path, audio_path, start_time=0, output_path="output.mp4")
 
 # Example usage
 if __name__ == "__main__":
-    add_audio_to_video(
+    add_to_video(
         video_path="scatter_path.mp4",
         audio_path="background.mp3",
         start_time=5,  # audio starts at 5 seconds
