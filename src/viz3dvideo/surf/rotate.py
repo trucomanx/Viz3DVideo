@@ -4,6 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 
+
 def animate_rotate( X, Y, Z, 
                     filename="animate_rotate.mp4",
                     pixel_size=(1920, 1080), 

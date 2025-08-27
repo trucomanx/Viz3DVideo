@@ -6,13 +6,15 @@ from matplotlib.animation import FuncAnimation
 from scipy.interpolate import interp1d
 
 def animate_path(   X, Y, Z, camera_points, 
-                    steps=360,
                     pixel_size=(1920, 1080), 
                     dpi=100, 
                     colormap='viridis',
                     filename="superficie_path.mp4", 
+                    steps=360,
+                    interval=30,
                     fps=30, 
-                    interval=30):
+                    cb_enable=False,
+                    cb_title="Z"):
     """
     Creates and saves a 3D animation of the surface Z = f(X, Y) following a camera path
     defined by `camera_points`.

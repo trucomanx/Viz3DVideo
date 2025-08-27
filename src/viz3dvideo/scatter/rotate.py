@@ -4,20 +4,19 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 
-def animate_rotate(
-        X, Y, Z, W,
-        filename="animate_rotate.mp4",
-        pixel_size=(1920, 1080),
-        dpi=100,
-        colormap='viridis',
-        elev=30,
-        frames=360,
-        interval=30,
-        fps=30,
-        s=20,
-        cb_enable=False,
-        cb_title="W"
-    ):
+
+def animate_rotate( X, Y, Z, W,
+                    filename="animate_rotate.mp4",
+                    pixel_size=(1920, 1080),
+                    dpi=100,
+                    colormap='viridis',
+                    elev=30,
+                    frames=360,
+                    interval=30,
+                    fps=30,
+                    s=20,
+                    cb_enable=False,
+                    cb_title="W" ):
     """
     Creates and saves a 3D rotating scatter plot animation.
 
