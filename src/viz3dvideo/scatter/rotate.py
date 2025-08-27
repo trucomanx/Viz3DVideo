@@ -10,13 +10,13 @@ def animate_rotate( X, Y, Z, W,
                     pixel_size=(1920, 1080),
                     dpi=100,
                     colormap='viridis',
-                    elev=30,
                     frames=360,
                     interval=30,
                     fps=30,
-                    s=20,
                     cb_enable=False,
-                    cb_title="W" ):
+                    cb_title="W",
+                    elev=30,
+                    s=20 ):
     """
     Creates and saves a 3D rotating scatter plot animation.
 

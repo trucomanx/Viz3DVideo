@@ -10,12 +10,12 @@ def animate_rotate( X, Y, Z,
                     pixel_size=(1920, 1080), 
                     dpi=100, 
                     colormap='viridis',
-                    elev=30, 
                     frames=360, 
                     interval=30, 
                     fps=30,
                     cb_enable=False,
-                    cb_title="Z"):
+                    cb_title="Z",
+                    elev=30):
     """
     Creates and saves a 3D animation of the surface Z = f(X, Y).
 

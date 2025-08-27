@@ -6,11 +6,11 @@ from matplotlib.animation import FuncAnimation
 from scipy.interpolate import interp1d
 
 def animate_path(   X, Y, Z, camera_points, 
+                    filename="animate_path.mp4", 
                     pixel_size=(1920, 1080), 
                     dpi=100, 
                     colormap='viridis',
-                    filename="superficie_path.mp4", 
-                    steps=360,
+                    frames=360,
                     interval=30,
                     fps=30, 
                     cb_enable=False,
@@ -24,11 +24,11 @@ def animate_path(   X, Y, Z, camera_points,
         Y (array-like): 2D array of Y coordinates of the surface.
         Z (array-like): 2D array of Z values of the surface.
         camera_points (list of tuple): List of (elev, azim) tuples defining the camera path.
-        steps (int, optional): Total number of frames in the animation. Default is 360.
+        frames (int, optional): Total number of frames in the animation. Default is 360.
         pixel_size (tuple, optional): Figure size in pixels (width, height). Default is (1920, 1080).
         dpi (int, optional): Figure resolution in dots per inch. Default is 100.
         colormap (str, optional): Colormap for the surface. Default is 'viridis'.
-        filename (str, optional): Output file name. Default is 'superficie_path.mp4'.
+        filename (str, optional): Output file name. Default is 'animate_path.mp4'.
         fps (int, optional): Frames per second for the video. Default is 30.
         interval (int, optional): Interval between frames in milliseconds. Default is 30.
 
@@ -42,13 +42,17 @@ def animate_path(   X, Y, Z, camera_points,
     # --- Cria figura ---
     fig = plt.figure(figsize=figsize, dpi=dpi)
     ax = fig.add_subplot(111, projection='3d')
-    ax.plot_surface(X, Y, Z, cmap=colormap)
+    hd_surf = ax.plot_surface(X, Y, Z, cmap=colormap)
+
+    # Barra de cores
+    if cb_enable:
+        fig.colorbar(hd_surf, ax=ax, shrink=0.5, aspect=10, label=cb_title)
 
     # --- Interpolação ---
     camera_points = np.array(camera_points)
     n_points = len(camera_points)
     t_original = np.linspace(0, 1, n_points)
-    t_interp = np.linspace(0, 1, steps)
+    t_interp = np.linspace(0, 1, frames)
 
     elev_interp = interp1d(t_original, camera_points[:,0], kind='cubic')(t_interp)
     azim_interp = interp1d(t_original, camera_points[:,1], kind='cubic')(t_interp)
@@ -61,7 +65,7 @@ def animate_path(   X, Y, Z, camera_points,
     def progresso(frame_number, total_frames):
         print(f"Renderizando frame {frame_number+1}/{total_frames}", end='\r')
 
-    ani = FuncAnimation(fig, update, frames=steps, interval=interval, blit=False)
+    ani = FuncAnimation(fig, update, frames=frames, interval=interval, blit=False)
 
     ani.save(
         filename,
@@ -85,5 +89,5 @@ if __name__ == "__main__":
     # Lista de pontos de câmera pelos quais a animação deve passar
     camera_points = [(30, 0), (45, 90), (60, 180), (30, 270), (30, 360)]
 
-    animate_path(X, Y, Z, camera_points, steps=360)
+    animate_path(X, Y, Z, camera_points, frames=360, cb_enable=True)
 
