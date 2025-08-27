@@ -5,14 +5,16 @@ import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 
 def animate_rotate( X, Y, Z, 
-                    filename="superficie_hd.mp4",
+                    filename="animate_rotate.mp4",
                     pixel_size=(1920, 1080), 
                     dpi=100, 
                     colormap='viridis',
                     elev=30, 
                     frames=360, 
                     interval=30, 
-                    fps=30):
+                    fps=30,
+                    cb_enable=False,
+                    cb_title="Z"):
     """
     Creates and saves a 3D animation of the surface Z = f(X, Y).
 
@@ -20,7 +22,7 @@ def animate_rotate( X, Y, Z,
         X (array-like): 2D array of X coordinates of the surface.
         Y (array-like): 2D array of Y coordinates of the surface.
         Z (array-like): 2D array of Z values of the surface.
-        filename (str, optional): Output file name. Default is 'superficie_hd.mp4'.
+        filename (str, optional): Output file name. Default is 'animate_rotate.mp4'.
         pixel_size (tuple, optional): Figure size in pixels (width, height). Default is (1920, 1080).
         dpi (int, optional): Figure resolution in dots per inch. Default is 100.
         colormap (str, optional): Colormap for the surface. Default is 'viridis'.
@@ -28,6 +30,8 @@ def animate_rotate( X, Y, Z,
         frames (int, optional): Total number of frames in the animation. Default is 360.
         interval (int, optional): Interval between frames in milliseconds. Default is 30.
         fps (int, optional): Frames per second for the video. Default is 30.
+        cb_enable (bool, optional): Enable colorbar. Default False.
+        cb_title (str, optional): Title of colorbar. Default "Z".
 
     Returns:
         None
@@ -36,7 +40,11 @@ def animate_rotate( X, Y, Z,
     figsize = (width / dpi, height / dpi)  # calcula tamanho em polegadas
     fig = plt.figure(figsize=figsize, dpi=dpi)
     ax = fig.add_subplot(111, projection='3d')
-    ax.plot_surface(X, Y, Z, cmap=colormap)
+    hd_surf = ax.plot_surface(X, Y, Z, cmap=colormap)
+    
+    # Barra de cores
+    if cb_enable:
+        fig.colorbar(hd_surf, ax=ax, shrink=0.5, aspect=10, label=cb_title)
     
     def update(frame):
         ax.view_init(elev=elev, azim=frame)
@@ -65,6 +73,6 @@ if __name__ == "__main__":
     X, Y = np.meshgrid(X, Y)
     Z = np.sin(np.sqrt(X**2 + Y**2))
 
-    animate_rotate(X, Y, Z)
+    animate_rotate(X, Y, Z, cb_enable=True)
 
 
