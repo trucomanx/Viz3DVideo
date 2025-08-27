@@ -6,3 +6,5 @@
 /*/*.mp4
 /*.mp4
 /refman/tmp-out/
+/src/viz3dvideo/audio/__pycache__/
+/src/viz3dvideo/overlay/__pycache__/

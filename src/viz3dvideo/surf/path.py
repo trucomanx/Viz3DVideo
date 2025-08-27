@@ -11,7 +11,6 @@ def animate_path(   X, Y, Z, camera_points,
                     dpi=200, 
                     colormap='viridis',
                     frames=360,
-                    interval=30,
                     fps=30, 
                     cb_enable=False,
                     cb_title="Z"):
@@ -30,7 +29,6 @@ def animate_path(   X, Y, Z, camera_points,
         colormap (str, optional): Colormap for the surface. Default is 'viridis'.
         output_path (str, optional): Output file name. Default is 'animate_path.mp4'.
         fps (int, optional): Frames per second for the video. Default is 30.
-        interval (int, optional): Interval between frames in milliseconds. Default is 30.
 
     Returns:
         None
@@ -58,14 +56,14 @@ def animate_path(   X, Y, Z, camera_points,
     azim_interp = interp1d(t_original, camera_points[:,1], kind='cubic')(t_interp)
 
     # --- Função de atualização ---
-    def update(frame):
-        ax.view_init(elev=elev_interp[frame], azim=azim_interp[frame])
+    def update(fr):
+        ax.view_init(elev=elev_interp[fr], azim=azim_interp[fr])
         return []
 
     def progresso(frame_number, total_frames):
         print(f"Renderizando frame {frame_number+1}/{total_frames}", end='\r')
 
-    ani = FuncAnimation(fig, update, frames=frames, interval=interval, blit=False)
+    ani = FuncAnimation(fig, update, frames=frames, blit=False)
 
     ani.save(
         output_path,
@@ -89,5 +87,5 @@ if __name__ == "__main__":
     # Lista de pontos de câmera pelos quais a animação deve passar
     camera_points = [(30, 0), (45, 90), (60, 180), (30, 270), (30, 360)]
 
-    animate_path(X, Y, Z, camera_points, frames=360, cb_enable=True)
+    animate_path(X, Y, Z, camera_points, frames=1440, fps=30, cb_enable=True)
 

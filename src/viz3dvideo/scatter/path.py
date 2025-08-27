@@ -11,7 +11,6 @@ def animate_path(   X, Y, Z, W, camera_points,
                     dpi=200,
                     colormap='viridis',
                     frames=360,
-                    interval=30,
                     fps=30,
                     cb_enable=False,
                     cb_title="W",
@@ -30,7 +29,6 @@ def animate_path(   X, Y, Z, W, camera_points,
         colormap (str, optional): Matplotlib colormap for coloring. Default is 'viridis'.
         output_path (str, optional): Output file name. Default is 'animate_scatter_path.mp4'.
         fps (int, optional): Frames per second for the video. Default is 30.
-        interval (int, optional): Interval between frames in milliseconds. Default is 30.
         cb_enable (bool, optional): Enable colorbar. Default is False.
         cb_title (str, optional): Colorbar title. Default is "W".
         s (int, optional): Size of scatter points. Default is 40.
@@ -70,7 +68,7 @@ def animate_path(   X, Y, Z, W, camera_points,
     def progresso(frame_number, total_frames):
         print(f"Renderizando frame {frame_number+1}/{total_frames}", end='\r')
 
-    ani = FuncAnimation(fig, update, frames=frames, interval=interval, blit=False)
+    ani = FuncAnimation(fig, update, frames=frames, blit=False)
 
     ani.save(
         output_path,
@@ -95,5 +93,5 @@ if __name__ == "__main__":
     # Lista de pontos de câmera pelos quais a animação deve passar
     camera_points = [(30, 0), (45, 90), (60, 180), (30, 270), (30, 360)]
 
-    animate_path(X, Y, Z, W, camera_points, frames=360, cb_enable=True)
+    animate_path(X, Y, Z, W, camera_points, frames=1440, fps=30, cb_enable=True)
 

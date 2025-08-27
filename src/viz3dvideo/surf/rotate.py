@@ -11,11 +11,11 @@ def animate_rotate( X, Y, Z,
                     dpi=200, 
                     colormap='viridis',
                     frames=360, 
-                    interval=30, 
                     fps=30,
                     cb_enable=False,
                     cb_title="Z",
-                    elev=30):
+                    elev=30,
+                    interval=0.5 ):
     """
     Creates and saves a 3D animation of the surface Z = f(X, Y).
 
@@ -29,7 +29,7 @@ def animate_rotate( X, Y, Z,
         colormap (str, optional): Colormap for the surface. Default is 'viridis'.
         elev (float, optional): Initial elevation of the camera. Default is 30.
         frames (int, optional): Total number of frames in the animation. Default is 360.
-        interval (int, optional): Interval between frames in milliseconds. Default is 30.
+        interval (float, optional): Angle interval between frames in degrees. Default is 1.0.
         fps (int, optional): Frames per second for the video. Default is 30.
         cb_enable (bool, optional): Enable colorbar. Default False.
         cb_title (str, optional): Title of colorbar. Default "Z".
@@ -47,14 +47,14 @@ def animate_rotate( X, Y, Z,
     if cb_enable:
         fig.colorbar(hd_surf, ax=ax, shrink=0.5, aspect=10, label=cb_title)
     
-    def update(frame):
-        ax.view_init(elev=elev, azim=frame)
+    def update(fr):
+        ax.view_init(elev=elev, azim=fr*interval)
         return []
 
     def progresso(frame_number, total_frames):
         print(f"Renderizando frame {frame_number+1}/{total_frames}", end='\r')
 
-    ani = FuncAnimation(fig, update, frames=frames, interval=interval, blit=False)
+    ani = FuncAnimation(fig, update, frames=frames, blit=False)
 
     ani.save(
         output_path,
@@ -73,7 +73,7 @@ if __name__ == "__main__":
     Y = np.linspace(-5, 5, 100)
     X, Y = np.meshgrid(X, Y)
     Z = np.sin(np.sqrt(X**2 + Y**2))
-
-    animate_rotate(X, Y, Z, pixel_size=(3840, 2160), frames=720, cb_enable=True)
+    
+    animate_rotate(X, Y, Z, pixel_size=(1920, 1080), frames=720, interval=0.5, cb_enable=True)
 
 

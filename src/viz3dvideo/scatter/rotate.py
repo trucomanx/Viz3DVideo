@@ -11,11 +11,11 @@ def animate_rotate( X, Y, Z, W,
                     dpi=200,
                     colormap='viridis',
                     frames=360,
-                    interval=30,
                     fps=30,
                     cb_enable=False,
                     cb_title="W",
                     elev=30,
+                    interval=0.5,
                     s=40 ):
     """
     Creates and saves a 3D rotating scatter plot animation.
@@ -31,7 +31,7 @@ def animate_rotate( X, Y, Z, W,
         colormap (str, optional): Matplotlib colormap for coloring. Default 'viridis'.
         elev (float, optional): Initial elevation angle. Default 30.
         frames (int, optional): Number of frames. Default 360.
-        interval (int, optional): Interval between frames in ms. Default 30.
+        interval (float, optional): Angle interval between frames in degrees. Default is 1.0.
         fps (int, optional): Frames per second. Default 30.
         s (int, optional): Scatter point size. Default 40.
         cb_enable (bool, optional): Enable colorbar. Default False.
@@ -53,14 +53,14 @@ def animate_rotate( X, Y, Z, W,
     if cb_enable:
         fig.colorbar(scatter, ax=ax, shrink=0.5, aspect=10, label=cb_title)
 
-    def update(frame):
-        ax.view_init(elev=elev, azim=frame)
+    def update(fr):
+        ax.view_init(elev=elev, azim=fr*interval)
         return scatter,
 
     def progresso(frame_number, total_frames):
         print(f"Renderizando frame {frame_number+1}/{total_frames}", end='\r')
 
-    ani = FuncAnimation(fig, update, frames=frames, interval=interval, blit=False)
+    ani = FuncAnimation(fig, update, frames=frames, blit=False)
 
     ani.save(
         output_path,
@@ -82,5 +82,5 @@ if __name__ == "__main__":
     Z = np.random.uniform(-5, 5, n)
     W = np.sqrt(X**2 + Y**2 + Z**2)  # coloração por distância à origem
 
-    animate_rotate(X, Y, Z, W)
+    animate_rotate(X, Y, Z, W, pixel_size=(1920, 1080), frames=720, interval=0.5, cb_enable=True)
 
