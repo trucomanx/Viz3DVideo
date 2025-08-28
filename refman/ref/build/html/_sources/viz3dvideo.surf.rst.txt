@@ -1,0 +1,29 @@
+viz3dvideo.surf package
+=======================
+
+Submodules
+----------
+
+viz3dvideo.surf.path module
+---------------------------
+
+.. automodule:: viz3dvideo.surf.path
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+viz3dvideo.surf.rotate module
+-----------------------------
+
+.. automodule:: viz3dvideo.surf.rotate
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: viz3dvideo.surf
+   :members:
+   :undoc-members:
+   :show-inheritance:

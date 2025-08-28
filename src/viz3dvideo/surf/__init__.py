@@ -1,10 +1,24 @@
 #!/usr/bin/python3
 
 """
-Subpackage for surface visualizations (viz3dvideo.surf).
+viz3dvideo.surf
+===============
 
-Provides functions to animate surfaces by following a camera path
-or by rotating around the object.
+Subpackage for 3D surface visualizations.
+
+Provides functions to animate 3D surfaces (Z = f(X, Y)). You can
+either rotate the camera around the surface or follow a custom camera path.
+
+Available functions:
+
+- animate_rotate(X, Y, Z, ...) : Create a rotating 3D surface animation.
+- animate_path(X, Y, Z, camera_points, ...) : Animate a surface following a camera path.
+
+Example usage::
+
+    from viz3dvideo.surf import animate_path
+    
+    animate_path(X, Y, Z, camera_points=[(30,0),(45,90)])
 """
 
 from .rotate import animate_rotate

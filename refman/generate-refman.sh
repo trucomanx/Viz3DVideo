@@ -3,7 +3,7 @@
 PROJECT_NAME="Viz3DVideo"
 PACKAGE_NAME="viz3dvideo"
 PACKAGE_PARENT_PATH="../src"
-DOCS_PATH="./tmp-out"
+DOCS_PATH="./ref"
 
 mkdir -p $DOCS_PATH
 
@@ -24,6 +24,8 @@ if [ -f "$CONF_FILE" ]; then
 
     # Ativa autodoc e napoleon
     sed -i "s/extensions = \[/extensions = \['sphinx.ext.autodoc', 'sphinx.ext.napoleon', /" $CONF_FILE
+
+
 else
     echo "Erro: conf.py não encontrado em $CONF_FILE"
     exit 1
@@ -34,12 +36,14 @@ echo "Sphinx configurado para autodoc, napoleon e tema ReadTheDocs."
 
 # --- 2.1 Adiciona modules.rst ao toctree do index.rst ---
 INDEX_FILE="$DOCS_PATH/source/index.rst"
-if [ -f "$INDEX_FILE" ]; then
-    # Adiciona "modules" ao final do toctree se ainda não estiver presente
-    grep -qxF "   modules" "$INDEX_FILE" || sed -i "/.. toctree::/a\\
-   modules
-" "$INDEX_FILE"
+if [ -f "index.rst" ]; then
+    cp "index.rst" "$INDEX_FILE"
+    echo "index.rst atualizado com o template."
 fi
+
+# --- 2.2 ---
+echo ".. |version| replace:: $(PYTHONPATH=../src python3 -c 'from viz3dvideo.about import __version__; print(__version__)')" > $DOCS_PATH/source/version.rst
+
 
 # --- 3. Gera arquivos .rst para todos os módulos do pacote ---
 sphinx-apidoc -o $DOCS_PATH/source $PACKAGE_PARENT_PATH/$PACKAGE_NAME

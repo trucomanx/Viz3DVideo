@@ -1,0 +1,21 @@
+viz3dvideo.overlay package
+==========================
+
+Submodules
+----------
+
+viz3dvideo.overlay.image module
+-------------------------------
+
+.. automodule:: viz3dvideo.overlay.image
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: viz3dvideo.overlay
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -8,3 +8,7 @@
 /refman/tmp-out/
 /src/viz3dvideo/audio/__pycache__/
 /src/viz3dvideo/overlay/__pycache__/
+/refman/ref/build/doctrees/
+/refman/ref/source/
+/refman/ref/make.bat
+/refman/ref/Makefile

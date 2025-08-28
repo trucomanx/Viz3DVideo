@@ -1,0 +1,40 @@
+viz3dvideo package
+==================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   viz3dvideo.audio
+   viz3dvideo.overlay
+   viz3dvideo.scatter
+   viz3dvideo.surf
+
+Submodules
+----------
+
+viz3dvideo.about module
+-----------------------
+
+.. automodule:: viz3dvideo.about
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+viz3dvideo.program module
+-------------------------
+
+.. automodule:: viz3dvideo.program
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: viz3dvideo
+   :members:
+   :undoc-members:
+   :show-inheritance:

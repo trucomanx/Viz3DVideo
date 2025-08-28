@@ -1,0 +1,21 @@
+viz3dvideo.audio package
+========================
+
+Submodules
+----------
+
+viz3dvideo.audio.add module
+---------------------------
+
+.. automodule:: viz3dvideo.audio.add
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: viz3dvideo.audio
+   :members:
+   :undoc-members:
+   :show-inheritance:

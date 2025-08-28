@@ -1,0 +1,29 @@
+viz3dvideo.scatter package
+==========================
+
+Submodules
+----------
+
+viz3dvideo.scatter.path module
+------------------------------
+
+.. automodule:: viz3dvideo.scatter.path
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+viz3dvideo.scatter.rotate module
+--------------------------------
+
+.. automodule:: viz3dvideo.scatter.rotate
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: viz3dvideo.scatter
+   :members:
+   :undoc-members:
+   :show-inheritance:
