@@ -2,7 +2,7 @@
 
 Visualize a video of 3D graphs in Matplotlib
 
-![logo](https://raw.githubusercontent.com/trucomanx/Viz3DVideo/main/screenshot.png)
+[![logo](https://raw.githubusercontent.com/trucomanx/Viz3DVideo/main/screenshot.png)](https://www.youtube.com/watch?v=OSm2YUywPsQ)
 
 ## 1. Installing
 
