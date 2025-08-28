@@ -20,7 +20,7 @@ __url_source__ : str
     Source code page.
 """
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 __package__ = "viz3dvideo"
 __program_name__ = "viz3dvideo-info"
 __author__ = "Fernando Pujaico Rivera" 

@@ -59,7 +59,11 @@ dependencies = [
 "{__program_name__}" = "{__package__}.program:main"
 
 [tool.setuptools]
-packages = ["{__package__}", "{__package__}.modules"]
+packages = ["{__package__}", 
+            "{__package__}.audio",
+            "{__package__}.overlay",
+            "{__package__}.scatter",
+            "{__package__}.surf"]
 
 [tool.setuptools.package-data]
 "{__package__}" = ["icons/logo.png"]

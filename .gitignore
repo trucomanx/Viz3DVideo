@@ -12,3 +12,6 @@
 /refman/ref/source/
 /refman/ref/make.bat
 /refman/ref/Makefile
+/src/dist/
+/src/viz3dvideo.egg-info/
+/src/pyproject.toml
